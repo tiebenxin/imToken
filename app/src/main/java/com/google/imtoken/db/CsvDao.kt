@@ -25,7 +25,7 @@ interface CsvDao {
     fun queryCsvByHash(id: String): CsvBean?
 
 
-    @Query("SELECT * FROM db_csv")
+    @Query("SELECT * FROM db_csv LIMIT 10")
     fun getAll(): List<CsvBean?>?
 
 

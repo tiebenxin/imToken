@@ -14,6 +14,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.imtoken.db.AppDataBase
 import com.google.imtoken.db.CsvBean
 import com.google.imtoken.db.CsvDao
+import kotlinx.android.synthetic.main.item_trade.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        tv_account.text = getLongAccount("0xdbb7E5Bf95D58c067F50F4c36FbEBB4Dfb837913")
 
         readExcel()
 
@@ -74,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         val csvBean = CsvBean(
             split[0],
             split[1],
-            split[2],
+            getTimestamp(split[2]),
             split[3],
             split[4],
             split[5],
@@ -92,10 +94,9 @@ class MainActivity : AppCompatActivity() {
         val csvLists = csvDao?.getAll()
         var entries = mutableListOf<Entry>()
 
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         csvLists?.forEach {
             //2020-10-01 00:17:24
-            val milliseconds = sdf.parse(it?.blocktime).time
+            val milliseconds = it?.blocktime
             entries.add(Entry(milliseconds.toFloat(), it?.value?.toFloat()!!))
             Log.d(" Entry","milliseconds=${milliseconds},value=${it?.value?.toFloat()!!}")
         }

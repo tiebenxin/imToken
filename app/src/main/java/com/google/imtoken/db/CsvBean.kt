@@ -15,13 +15,11 @@ import androidx.room.PrimaryKey
 data class CsvBean(
     @PrimaryKey val hash: String,
     val block: String,
-    val blocktime: String,
+    val blocktime: Long,
     val from: String,
     val label: String,
     val to: String,
     val label1: String,
     val value: String,
     val symbol: String
-
-
 )

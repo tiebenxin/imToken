@@ -114,7 +114,7 @@
             android:layout_marginTop="12dp"
             android:ellipsize="middle"
             android:maxLength="20"
-            android:text="0xdbb7E5Bf95D58c067F50F4c36FbEBB4Dfb837913"
+            android:text=""
             android:textColor="#fff"
             app:layout_constraintLeft_toLeftOf="@id/tv_wallet"
             app:layout_constraintTop_toBottomOf="@id/tv_wallet" />
@@ -188,6 +188,7 @@
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@mipmap/icon_ethlogo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -206,12 +207,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/linechart"
-        android:layout_width="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="100dp"
-        android:layout_height="200dp"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

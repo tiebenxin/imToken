@@ -25,8 +25,11 @@ interface CsvDao {
     fun queryCsvByHash(id: String): CsvBean?
 
 
-    @Query("SELECT * FROM db_csv LIMIT 10")
-    fun getAll(): List<CsvBean?>?
+    @Query("SELECT * FROM db_csv ORDER BY blocktime ASC LIMIT 40")
+    fun getAll(): MutableList<CsvBean>?
+
+    @Query("SELECT * FROM db_csv WHERE blocktime >:time ORDER BY blocktime ASC LIMIT 40")
+    fun getMore(time:Long): MutableList<CsvBean>?
 
 
     //删除delete

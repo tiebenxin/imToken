@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.activity_trade_record.*
 class TradeRecordActivity : AppCompatActivity() {
     var mAdapter: TradeAdapter? = null
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,7 +21,7 @@ class TradeRecordActivity : AppCompatActivity() {
 
         recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         mAdapter = TradeAdapter(this)
-        mAdapter!!.currentAccount = "0xdbb7E5Bf95D58c067F50F4c36FbEBB4Dfb837913"
+        mAdapter!!.currentAccount = account
         recycler_view.adapter = mAdapter
 
         spring_view.setGive(SpringView.Give.BOTTOM)
@@ -33,7 +35,7 @@ class TradeRecordActivity : AppCompatActivity() {
 
 
         val csvDao = AppDataBase.getDataBase()?.csvDao()
-        val csvLists = csvDao?.getAll()
+        val csvLists = csvDao?.getAll(account)
         mAdapter!!.bindData(csvLists!!, false)
     }
 

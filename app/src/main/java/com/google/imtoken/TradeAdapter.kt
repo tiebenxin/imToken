@@ -66,9 +66,14 @@ class TradeAdapter : RecyclerView.Adapter<TradeAdapter.MyViewHolder> {
             if (currentAccount == bean.from) {
                 otherAccount = bean.to
                 isInCome = 0
+                tvMoney!!.text = "-${bean.value}"
+                tvMoney!!.setTextColor(getColor(mContext!!,R.color.color_out))
+
             } else {
                 otherAccount = bean.from
                 isInCome = 1
+                tvMoney!!.text = "+${bean.value}"
+                tvMoney!!.setTextColor(getColor(mContext!!,R.color.color_income))
             }
             tvAccount!!.text = getShortAccount(otherAccount)
             if (isInCome == 1) {
@@ -78,6 +83,7 @@ class TradeAdapter : RecyclerView.Adapter<TradeAdapter.MyViewHolder> {
             } else if (isInCome == -1) {
                 ivIcon!!.setImageResource(R.mipmap.ic_txfail)
             }
+
         }
     }
 

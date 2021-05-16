@@ -1,5 +1,6 @@
 package com.google.imtoken.db
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -16,8 +17,10 @@ data class CsvBean(
     @PrimaryKey val hash: String,
     val block: String,
     val blocktime: Long,
+    @ColumnInfo(name = "from_account")
     val from: String,
     val label: String,
+    @ColumnInfo(name = "to_account")
     val to: String,
     val label1: String,
     val value: String,

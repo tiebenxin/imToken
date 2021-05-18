@@ -5,6 +5,7 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
+import java.util.*
 
 const val account = "0xdbb7e5bf95d58c067f50f4c36fbebb4dfb837913"
 //const val account="0x056ce95d37ad99128c9b4922f0a3d01deea06344"
@@ -26,18 +27,20 @@ fun formatMoney(money: Double): String {
     return format.format(money)
 }
 
-fun formatTime(time: String): String {
+fun formatTime(time: Long): String {
+    val date = Date()
+    date.time = time
     val pattern = "MM/dd/yyyy HH:mm:ss"
     val format = SimpleDateFormat(pattern)
-    return format.format(time)
+    return format.format(date)
 }
 
 fun getTimestamp(time: String): Long {
-    val pattern = "yyyy-mm-dd HH:mm:ss"
+    val pattern = "yyyy-MM-dd HH:mm:ss"
     val format = SimpleDateFormat(pattern)
     return format.parse(time).time
 }
 
-fun getColor(context: Context, @ColorRes rid: Int):Int {
-   return ContextCompat.getColor(context, rid)
+fun getColor(context: Context, @ColorRes rid: Int): Int {
+    return ContextCompat.getColor(context, rid)
 }

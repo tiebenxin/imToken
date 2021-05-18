@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b78bee933ec18ce1076809ef98773352",
+    "identityHash": "f8a323a97b178245e93b76c5c255a590",
     "entities": [
       {
         "tableName": "db_csv",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`hash` TEXT NOT NULL, `block` TEXT NOT NULL, `blocktime` INTEGER NOT NULL, `from_account` TEXT NOT NULL, `label` TEXT NOT NULL, `to_account` TEXT NOT NULL, `label1` TEXT NOT NULL, `value` TEXT NOT NULL, `symbol` TEXT NOT NULL, PRIMARY KEY(`hash`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`hash` TEXT NOT NULL, `block` TEXT NOT NULL, `blocktime` INTEGER NOT NULL, `from_account` TEXT NOT NULL, `label` TEXT NOT NULL, `to_account` TEXT NOT NULL, `label1` TEXT NOT NULL, `value` REAL NOT NULL, `symbol` TEXT NOT NULL, PRIMARY KEY(`hash`))",
         "fields": [
           {
             "fieldPath": "hash",
@@ -53,7 +53,7 @@
           {
             "fieldPath": "value",
             "columnName": "value",
-            "affinity": "TEXT",
+            "affinity": "REAL",
             "notNull": true
           },
           {
@@ -76,7 +76,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b78bee933ec18ce1076809ef98773352')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f8a323a97b178245e93b76c5c255a590')"
     ]
   }
 }

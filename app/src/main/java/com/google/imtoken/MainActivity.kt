@@ -45,12 +45,12 @@ class MainActivity : AppCompatActivity() {
     private fun readExcel() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val inputStreamReader =
-                    InputStreamReader(assets.open("0xdbb7e5bf95d58c067f50f4c36fbebb4dfb837913.csv"))
+//                val inputStreamReader =
+//                    InputStreamReader(assets.open("0xdbb7e5bf95d58c067f50f4c36fbebb4dfb837913.csv"))
 //                val inputStreamReader =
 //                    InputStreamReader(assets.open("0x056ce95d37ad99128c9b4922f0a3d01deea06344.csv"))
-//                val inputStreamReader =
-//                    InputStreamReader(assets.open("0x3e673742707229BCA4D6B95363ADF045c47A9e94.csv"))
+                val inputStreamReader =
+                    InputStreamReader(assets.open("0x3e673742707229bca4d6b95363adf045c47a9e94.csv"))
                 val reader = BufferedReader(inputStreamReader)
                 val firstline = reader.readLine() //读取第一行
                 //hash,block,blocktime,from,label,to,label,value,symbol
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                             split[4],
                             split[5],
                             split[6],
-                            split[7],
+                            split[7].toDouble(),
                             split[8]
                         )
                     )
@@ -92,24 +92,6 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
-    }
-
-    private fun save2DB(s: String, csvDao: CsvDao?) {
-        val split = s.split(",")
-        Log.d("save2DB size", "${split.size}")
-        val csvBean = CsvBean(
-            split[0],
-            split[1],
-            getTimestamp(split[2]),
-            split[3],
-            split[4],
-            split[5],
-            split[6],
-            split[7],
-            split[8]
-        )
-        Log.d("save2DB", csvBean.toString())
-        csvDao?.insertCsv(csvBean)
     }
 
 

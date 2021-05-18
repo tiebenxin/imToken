@@ -34,10 +34,10 @@ interface CsvDao {
     fun getCount(): Int
 //    fun getCount(account: String): Int
 
-    @Query("SELECT * FROM db_csv WHERE from_account=:account OR to_account=:account ORDER BY blocktime ASC LIMIT 40")
+    @Query("SELECT * FROM db_csv WHERE from_account=:account OR to_account=:account ORDER BY blocktime ASC LIMIT 100")
     fun getAll(account: String): MutableList<CsvBean>?
 
-    @Query("SELECT * FROM db_csv WHERE (from_account=:account OR to_account=:account) AND blocktime >:time ORDER BY blocktime ASC LIMIT 40")
+    @Query("SELECT * FROM db_csv WHERE (from_account=:account OR to_account=:account) AND blocktime >:time ORDER BY blocktime ASC LIMIT 100")
     fun getMore(account: String, time: Long): MutableList<CsvBean>?
 
 

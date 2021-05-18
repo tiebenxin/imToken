@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.imtoken.db.CsvBean
+import java.lang.Exception
 
 class TradeAdapter : RecyclerView.Adapter<TradeAdapter.MyViewHolder> {
     private var mList: MutableList<CsvBean> = mutableListOf()
@@ -35,6 +36,17 @@ class TradeAdapter : RecyclerView.Adapter<TradeAdapter.MyViewHolder> {
 
     override fun getItemCount(): Int {
         return mList.size
+    }
+
+    fun getLastBean(): CsvBean? {
+        try {
+            if (itemCount > 0) {
+                return mList[itemCount - 1]
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -66,14 +78,14 @@ class TradeAdapter : RecyclerView.Adapter<TradeAdapter.MyViewHolder> {
             if (currentAccount == bean.from) {
                 otherAccount = bean.to
                 isInCome = 0
-                tvMoney!!.text = "-${bean.value}"
-                tvMoney!!.setTextColor(getColor(mContext!!,R.color.color_out))
+                tvMoney!!.text = "-${formatMoney(bean.value)}"
+                tvMoney!!.setTextColor(getColor(mContext!!, R.color.color_out))
 
             } else {
                 otherAccount = bean.from
                 isInCome = 1
-                tvMoney!!.text = "+${bean.value}"
-                tvMoney!!.setTextColor(getColor(mContext!!,R.color.color_income))
+                tvMoney!!.text = "+${formatMoney(bean.value)}"
+                tvMoney!!.setTextColor(getColor(mContext!!, R.color.color_income))
             }
             tvAccount!!.text = getShortAccount(otherAccount)
             if (isInCome == 1) {
@@ -83,6 +95,7 @@ class TradeAdapter : RecyclerView.Adapter<TradeAdapter.MyViewHolder> {
             } else if (isInCome == -1) {
                 ivIcon!!.setImageResource(R.mipmap.ic_txfail)
             }
+            tvTime!!.text = formatTime(bean.blocktime)
 
         }
     }

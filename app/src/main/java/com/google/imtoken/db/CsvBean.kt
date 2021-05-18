@@ -23,6 +23,6 @@ data class CsvBean(
     @ColumnInfo(name = "to_account")
     val to: String,
     val label1: String,
-    val value: String,
+    val value: Double,
     val symbol: String
 )

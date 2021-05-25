@@ -1,56 +1,62 @@
 package com.google.imtoken
 
-import android.graphics.Color
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.imtoken.db.AppDataBase
 import com.google.imtoken.db.CsvBean
-import com.google.imtoken.db.CsvDao
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_trade.*
+import kotlinx.android.synthetic.main.item_trade.tv_account
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
-//    lateinit var linechart: LineChart
+    //    lateinit var linechart: LineChart
+    val accountList: MutableList<String> = mutableListOf(
+        "0xdbb7e5bf95d58c067f50f4c36fbebb4dfb837913",
+        "0x056ce95d37ad99128c9b4922f0a3d01deea06344",
+        "0x3e673742707229bca4d6b95363adf045c47a9e94"
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         tv_account.text = getLongAccount("0xdbb7E5Bf95D58c067F50F4c36FbEBB4Dfb837913")
 
-        readExcel()
 
 //        linechart = findViewById<LineChart>(R.id.linechart)
         findViewById<ImageView>(R.id.scan).setOnClickListener {
 //            showChart()
+            startActivity(Intent(this@MainActivity, TradeRecordActivity::class.java))
+        }
+
+        cl_wallet.setOnClickListener {
+            for (s in accountList) {
+                readExcel(s)
+            }
         }
     }
 
 
-    private fun readExcel() {
+    private fun readExcel(account: String) {
         GlobalScope.launch(Dispatchers.IO) {
             try {
 //                val inputStreamReader =
 //                    InputStreamReader(assets.open("0xdbb7e5bf95d58c067f50f4c36fbebb4dfb837913.csv"))
 //                val inputStreamReader =
 //                    InputStreamReader(assets.open("0x056ce95d37ad99128c9b4922f0a3d01deea06344.csv"))
+//                val inputStreamReader =
+//                    InputStreamReader(assets.open("0x3e673742707229bca4d6b95363adf045c47a9e94.csv"))
                 val inputStreamReader =
-                    InputStreamReader(assets.open("0x3e673742707229bca4d6b95363adf045c47a9e94.csv"))
+                    InputStreamReader(assets.open("${account}.csv"))
                 val reader = BufferedReader(inputStreamReader)
                 val firstline = reader.readLine() //读取第一行
                 //hash,block,blocktime,from,label,to,label,value,symbol

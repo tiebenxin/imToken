@@ -14,6 +14,7 @@ class ImTokenApplication() : Application(){
 
     override fun onCreate() {
         super.onCreate()
+        AppConfig.context = applicationContext
         AppDataBase.initDB(applicationContext)
     }
 

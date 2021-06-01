@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/FixSystemWindowTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +21,9 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".TradeRecordActivity" />
+        <activity
+            android:name=".TradeRecordActivity2"
+            android:theme="@style/NoTitleTheme" />
     </application>
 
 </manifest>

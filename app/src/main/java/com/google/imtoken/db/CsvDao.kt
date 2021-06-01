@@ -41,6 +41,10 @@ interface CsvDao {
     fun getMore(account: String, time: Long): MutableList<CsvBean>?
 
 
+    @Query("SELECT * FROM db_csv WHERE (from_account=:account or to_account=:account) AND (blocktime>:start AND blocktime<:end) ORDER BY blocktime ASC LIMIT 100")
+    fun getAllInTime(account: String, start: Long, end: Long): MutableList<CsvBean>?
+
+
     //删除delete
     @Query("DELETE FROM db_csv WHERE hash=:hash")
     suspend fun deleteByHash(hash: String)

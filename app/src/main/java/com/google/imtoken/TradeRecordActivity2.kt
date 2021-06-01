@@ -35,10 +35,11 @@ class TradeRecordActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.statusBarColor = Color.parseColor("#FBFCFE")
+//        window.statusBarColor = Color.parseColor("#FBFCFE")
 
         UltimateBarX.with(this)
-            .color(Color.parseColor("#FBFCFE"))
+//            .color(Color.parseColor("#FBFCFE"))
+            .color(AppConfig.getColor(R.color.transparent)!!)
             .fitWindow(true)
             .light(true)
             .applyStatusBar()

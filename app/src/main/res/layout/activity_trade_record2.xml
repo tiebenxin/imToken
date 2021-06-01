@@ -9,9 +9,10 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="0dp"
-        android:stateListAnimator="@drawable/appbarlayout_elevated"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:elevation="0dp">
+
+        <!--         android:stateListAnimator="@drawable/appbarlayout_elevated"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
 
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -19,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#F3F4F6"
-            app:contentScrim="@color/white"
+            app:contentScrim="#FBFCFE"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
@@ -34,6 +35,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:background="#FBFCFE"
                 android:fitsSystemWindows="true"
                 app:contentInsetStart="0dp"
                 app:layout_collapseMode="pin">
@@ -43,7 +45,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#FBFCFE"
-                    app:layout_collapseMode="pin"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
@@ -100,7 +101,6 @@
             android:layout_height="42dp"
             android:layout_gravity="bottom"
             android:background="@color/white"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -108,25 +108,17 @@
             android:id="@+id/spring_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintTop_toBottomOf="@id/top_layout">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
+                android:overScrollMode="never"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
         </com.liaoinstan.springview.widget.SpringView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <View
-        android:id="@+id/view_line_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="5dp"
-        android:background="#EDEEF1"
-        app:layout_constraintBottom_toTopOf="@id/cl_bottom" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_bottom"
@@ -135,6 +127,14 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="10dp"
         android:background="#FCFCFC">
+
+        <View
+            android:id="@+id/view_line_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:background="#EDEEF1"
+            app:layout_constraintBottom_toTopOf="@id/cl_left" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

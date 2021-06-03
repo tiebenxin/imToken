@@ -3,6 +3,7 @@ package com.google.imtoken.db
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 /**
  * description ：
@@ -13,16 +14,32 @@ import androidx.room.PrimaryKey
  */
 
 @Entity(tableName = "db_csv")
-data class CsvBean(
-    @PrimaryKey val hash: String,
-    val block: String,
-    val blocktime: Long,
+class CsvBean : Serializable {
+    @PrimaryKey
+    var hash: String = ""
+    var block: String = ""
+    var blocktime: Long = 0L
+
     @ColumnInfo(name = "from_account")
-    val from: String,
-    val label: String,
+    var from: String = ""
+    var label: String = ""
+
     @ColumnInfo(name = "to_account")
-    val to: String,
-    val label1: String,
-    val value: Double,
-    val symbol: String
-)
+    var to: String = ""
+    var label1: String = ""
+    var value: Double = 0.0
+    var symbol: String = ""
+    var fee: Double = 0.0
+
+    override fun equals(other: Any?): Boolean {
+        if (other == null) {
+            return false
+        }
+        if (other is CsvBean) {
+            if ((other as CsvBean).hash == hash) {
+                return true
+            }
+        }
+        return false
+    }
+}

@@ -14,6 +14,7 @@ class TradeAdapter : RecyclerView.Adapter<TradeAdapter.MyViewHolder> {
     private var mList: MutableList<CsvBean> = mutableListOf()
     private var mContext: Context? = null
     var currentAccount = ""
+    var listener: IItemClickListener? = null
 
     constructor(context: Context) : super() {
         mContext = context
@@ -97,7 +98,16 @@ class TradeAdapter : RecyclerView.Adapter<TradeAdapter.MyViewHolder> {
             }
             tvTime!!.text = formatTime(bean.blocktime)
 
+            itemView.setOnClickListener {
+                if (listener != null) {
+                    listener!!.onItemClick(bean)
+                }
+            }
         }
+    }
+
+    interface IItemClickListener {
+        fun onItemClick(bean: CsvBean)
     }
 
 }

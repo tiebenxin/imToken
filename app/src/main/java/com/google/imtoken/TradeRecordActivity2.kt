@@ -1,6 +1,7 @@
 package com.google.imtoken
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.imtoken.db.AppDataBase
+import com.google.imtoken.db.CsvBean
 import com.liaoinstan.springview.container.DefaultFooter
 import com.liaoinstan.springview.widget.SpringView
 import com.zackratos.ultimatebarx.ultimatebarx.UltimateBarX
@@ -53,6 +55,15 @@ class TradeRecordActivity2 : AppCompatActivity() {
         mAdapter = TradeAdapter(this)
         mAdapter!!.currentAccount = account
         recycler_view.adapter = mAdapter
+        mAdapter!!.listener = object : TradeAdapter.IItemClickListener {
+            override fun onItemClick(bean: CsvBean) {
+                val intent = Intent(this@TradeRecordActivity2, TradeDetailActivity::class.java)
+                val bundle = Bundle()
+                bundle.putSerializable("data", bean)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        }
 
         spring_view.setGive(SpringView.Give.BOTTOM)
         spring_view.footer = DefaultFooter(this)
@@ -195,7 +206,7 @@ class TradeRecordActivity2 : AppCompatActivity() {
         //Y轴
         val axisLeft = linechart.axisLeft;
         axisLeft.setDrawGridLines(false);  //是否绘制Y轴上的网格线（背景里面的横线）
-        axisLeft.axisLineColor = AppConfig.getColor(R.color.color_income)!!   ;  //Y轴颜色
+        axisLeft.axisLineColor = AppConfig.getColor(R.color.color_income)!!;  //Y轴颜色
         axisLeft.axisLineWidth = 1f;           //Y轴粗细
 //        AxisLeft.setAxisMaximum(15f);   //Y轴最大数值
 //        AxisLeft.setAxisMinimum(0f);   //Y轴最小数值

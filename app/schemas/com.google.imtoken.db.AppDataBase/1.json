@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f8a323a97b178245e93b76c5c255a590",
+    "identityHash": "69ce0f8d3598791aa8756576e98d8ceb",
     "entities": [
       {
         "tableName": "db_csv",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`hash` TEXT NOT NULL, `block` TEXT NOT NULL, `blocktime` INTEGER NOT NULL, `from_account` TEXT NOT NULL, `label` TEXT NOT NULL, `to_account` TEXT NOT NULL, `label1` TEXT NOT NULL, `value` REAL NOT NULL, `symbol` TEXT NOT NULL, PRIMARY KEY(`hash`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`hash` TEXT NOT NULL, `block` TEXT NOT NULL, `blocktime` INTEGER NOT NULL, `from_account` TEXT NOT NULL, `label` TEXT NOT NULL, `to_account` TEXT NOT NULL, `label1` TEXT NOT NULL, `value` REAL NOT NULL, `symbol` TEXT NOT NULL, `fee` REAL NOT NULL, PRIMARY KEY(`hash`))",
         "fields": [
           {
             "fieldPath": "hash",
@@ -61,6 +61,12 @@
             "columnName": "symbol",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "fee",
+            "columnName": "fee",
+            "affinity": "REAL",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -76,7 +82,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f8a323a97b178245e93b76c5c255a590')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '69ce0f8d3598791aa8756576e98d8ceb')"
     ]
   }
 }

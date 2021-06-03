@@ -24,6 +24,7 @@
         <activity
             android:name=".TradeRecordActivity2"
             android:theme="@style/NoTitleTheme" />
+        <activity android:name=".TradeDetailActivity" />
     </application>
 
 </manifest>

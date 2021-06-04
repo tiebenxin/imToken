@@ -18,7 +18,9 @@ import com.google.imtoken.db.CsvBean
 import com.liaoinstan.springview.container.DefaultFooter
 import com.liaoinstan.springview.widget.SpringView
 import com.zackratos.ultimatebarx.ultimatebarx.UltimateBarX
+import kotlinx.android.synthetic.main.activity_trade_detail.*
 import kotlinx.android.synthetic.main.activity_trade_record2.*
+import kotlinx.android.synthetic.main.activity_trade_record2.iv_back
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
@@ -48,6 +50,10 @@ class TradeRecordActivity2 : AppCompatActivity() {
 
 
         setContentView(R.layout.activity_trade_record2)
+
+        iv_back.setOnClickListener {
+            finish()
+        }
 
         AppDataBase.initDB(applicationContext)
 

@@ -26,6 +26,10 @@ class TradeDetailActivity : AppCompatActivity() {
             .applyStatusBar()
         setContentView(R.layout.activity_trade_detail)
 
+        iv_back.setOnClickListener {
+            finish()
+        }
+
         bean = intent.getSerializableExtra("data") as CsvBean
         if (bean != null) {
             if (bean!!.from == account) {

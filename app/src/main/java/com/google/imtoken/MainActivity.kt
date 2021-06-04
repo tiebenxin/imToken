@@ -37,6 +37,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         tv_account.text = getLongAccount(account)
 
+        cl_asset_eth.setOnClickListener {
+            startActivity(Intent(this@MainActivity, TradeRecordActivity2::class.java))
+        }
+
 
 //        linechart = findViewById<LineChart>(R.id.linechart)
         findViewById<ImageView>(R.id.scan).setOnClickListener {

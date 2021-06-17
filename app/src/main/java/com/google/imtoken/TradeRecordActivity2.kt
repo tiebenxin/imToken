@@ -144,24 +144,89 @@ class TradeRecordActivity2 : AppCompatActivity() {
 
     private fun showChart() {
         val csvDao = AppDataBase.getDataBase()?.csvDao()
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.YEAR, 2020)
-        calendar.set(Calendar.MONTH, 10 - 1)
-        calendar.set(Calendar.DAY_OF_MONTH, 4)
-        val calendarEnd = Calendar.getInstance()
-        calendarEnd.set(Calendar.YEAR, 2020)
-        calendarEnd.set(Calendar.MONTH, 10 - 1)
-        calendarEnd.set(Calendar.DAY_OF_MONTH, 10)
-        val csvLists =
-            csvDao?.getAllInTime(account, calendar.timeInMillis, calendarEnd.timeInMillis)
+//        val calendar = Calendar.getInstance()
+//        calendar.set(Calendar.YEAR, 2020)
+//        calendar.set(Calendar.MONTH, 10 - 1)
+//        calendar.set(Calendar.DAY_OF_MONTH, 4)
+//        val calendarEnd = Calendar.getInstance()
+//        calendarEnd.set(Calendar.YEAR, 2020)
+//        calendarEnd.set(Calendar.MONTH, 10 - 1)
+//        calendarEnd.set(Calendar.DAY_OF_MONTH, 10)
+//        val csvLists =
+//            csvDao?.getAllInTime(account, calendar.timeInMillis, calendarEnd.timeInMillis)
+//        var entries = mutableListOf<Entry>()
+//
+//        csvLists?.forEach {
+//            //2020-10-01 00:17:24
+//            val milliseconds = it?.blocktime
+//            entries.add(Entry(milliseconds.toFloat(), it?.value?.toFloat()!!))
+//            Log.d(" Entry", "milliseconds=${milliseconds},value=${it?.value?.toFloat()!!}")
+//        }
         var entries = mutableListOf<Entry>()
+        val calendar = Calendar.getInstance()
 
-        csvLists?.forEach {
-            //2020-10-01 00:17:24
-            val milliseconds = it?.blocktime
-            entries.add(Entry(milliseconds.toFloat(), it?.value?.toFloat()!!))
-            Log.d(" Entry", "milliseconds=${milliseconds},value=${it?.value?.toFloat()!!}")
-        }
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 5 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 25)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.54f))
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 5 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 26)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.54f))
+
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 5 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 27)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.55f))
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 5 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 28)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.54f))
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 5 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 29)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.55f))
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 5 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 30)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.56f))
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 5 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 31)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.57f))
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 6 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.56f))
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 6 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 2)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.57f))
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 6 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 3)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.59f))
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 6 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 4)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.56f))
+
+
+        calendar.set(Calendar.YEAR, 2020)
+        calendar.set(Calendar.MONTH, 6 - 1)
+        calendar.set(Calendar.DAY_OF_MONTH, 5)
+        entries.add(Entry(calendar.timeInMillis.toFloat(), 1.42f))
+
 
         val lineDataSet = LineDataSet(entries, "") // 添加数据
         val lineData = LineData(lineDataSet)
@@ -171,13 +236,18 @@ class TradeRecordActivity2 : AppCompatActivity() {
         lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER;
         lineDataSet.color = AppConfig.getColor(R.color.color_out)!!  //折线的颜色
         lineDataSet.lineWidth = 1f;        //折线的粗细
+        lineDataSet.setDrawCircles(false)
+        lineDataSet.setDrawCircleHole(false)
+        lineDataSet.setDrawValues(false)
+
+
 
 
         //对于右下角一串字母的操作
-        linechart.description.isEnabled = false;                  //是否显示右下角描述
-        linechart.description.text = "这是修改那串英文的方法";    //修改右下角字母的显示
-        linechart.description.textSize = 20f;                    //字体大小
-        linechart.description.textColor = AppConfig.getColor(R.color.color_out)!!             //字体颜色
+        linechart.description.isEnabled = false                 //是否显示右下角描述
+        linechart.description.text = "这是修改那串英文的方法"    //修改右下角字母的显示
+        linechart.description.textSize = 20f                   //字体大小
+        linechart.description.textColor = AppConfig.getColor(R.color.color_blue)!!             //字体颜色
 
         //图例
         val legend = linechart.legend;
@@ -190,15 +260,16 @@ class TradeRecordActivity2 : AppCompatActivity() {
 
         //X轴
         val xAxis = linechart.xAxis;
+        xAxis.setDrawAxisLine(false)
         xAxis.setDrawGridLines(false);  //是否绘制X轴上的网格线（背景里面的竖线）
         xAxis.axisLineColor = AppConfig.getColor(R.color.color_income)!!    //X轴颜色
+        xAxis.textColor = AppConfig.getColor(R.color.color_gay)!!    //字体颜色
         xAxis.axisLineWidth = 1f;           //X轴粗细
         xAxis.position = XAxis.XAxisPosition.BOTTOM;        //X轴所在位置   默认为上面
 //        xAxis.setAxisMaximum(5F);   //X轴最大数值
 //        xAxis.setAxisMinimum(0f);   //X轴最小数值
         //X轴坐标的个数    第二个参数一般填false     true表示强制设置标签数 可能会导致X轴坐标显示不全等问题
-        xAxis.setLabelCount(10, false);
-
+        xAxis.setLabelCount(5, false);
         xAxis.valueFormatter = object : ValueFormatter() {
             private val mFormat = SimpleDateFormat("MM-dd")
             override fun getFormattedValue(value: Float): String {
@@ -210,14 +281,17 @@ class TradeRecordActivity2 : AppCompatActivity() {
 
 
         //Y轴
-        val axisLeft = linechart.axisLeft;
+        val axisLeft = linechart.axisLeft
+        axisLeft.setDrawAxisLine(false)
         axisLeft.setDrawGridLines(false);  //是否绘制Y轴上的网格线（背景里面的横线）
         axisLeft.axisLineColor = AppConfig.getColor(R.color.color_income)!!;  //Y轴颜色
+        axisLeft.textColor = AppConfig.getColor(R.color.color_gay)!!    //X轴颜色
         axisLeft.axisLineWidth = 1f;           //Y轴粗细
 //        AxisLeft.setAxisMaximum(15f);   //Y轴最大数值
 //        AxisLeft.setAxisMinimum(0f);   //Y轴最小数值
         //Y轴坐标的个数    第二个参数一般填false     true表示强制设置标签数 可能会导致X轴坐标显示不全等问题
-//        AxisLeft.setLabelCount(15,false);
+        axisLeft.setLabelCount(5,false);
+
 
         //是否隐藏右边的Y轴（不设置的话有两条Y轴 同理可以隐藏左边的Y轴）
         linechart.axisRight.isEnabled = false;
@@ -228,7 +302,7 @@ class TradeRecordActivity2 : AppCompatActivity() {
 
         //动画（如果使用了动画可以则省去更新数据的那一步）
 //        linechart.animateY(3000); //折线在Y轴的动画  参数是动画执行时间 毫秒为单位
-//        linechart.animateX(2000); //X轴动画
-        linechart.animateXY(2000, 2000);//XY两轴混合动画
+        linechart.animateX(2000); //X轴动画
+//        linechart.animateXY(2000, 2000);//XY两轴混合动画
     }
 }

@@ -44,3 +44,41 @@ fun getTimestamp(time: String): Long {
 fun getColor(context: Context, @ColorRes rid: Int): Int {
     return ContextCompat.getColor(context, rid)
 }
+
+fun getInt():Int{
+    return (1..9).random()
+}
+
+fun getInt0():Int{
+    return (0..9).random()
+}
+
+fun getGasPrice():Int{
+    0.0054
+    //0.00129253108199423
+    //17.00,20.00,23.00,27,28.00,36.00,,50,70
+    return (17..70).random()
+}
+
+fun getFee(sour:Double):Double{
+    //0.0054
+    //0.0012 9253108199423
+    val s0 = sour.toString()
+    val result = when (s0.length) {
+        5 -> {
+            "${s0}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt()}"
+        }
+        4 -> {
+            "${s0}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt()}"
+        }
+        3 -> {
+            "${s0}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt0()}${getInt()}"
+        }
+        else->{
+            s0
+        }
+    }
+//    val pattern = "#.###"
+//    val format = DecimalFormat(pattern)
+    return result.toDouble()
+}

@@ -6,14 +6,19 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import com.google.imtoken.db.AppDataBase
 import com.google.imtoken.db.CsvBean
 import com.zackratos.ultimatebarx.ultimatebarx.UltimateBarX
+import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_trade.tv_account
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.json.JSONArray
+import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -50,7 +55,8 @@ class MainActivity : AppCompatActivity() {
 
         cl_wallet.setOnClickListener {
             for (s in accountList) {
-                readExcel(s)
+//                readExcel(s)
+                readWorkExcel()
             }
         }
     }
@@ -129,6 +135,27 @@ class MainActivity : AppCompatActivity() {
                 val count = csvDao?.getCount()
                 Log.d("queryCsvByHash", "count=${count}")
 
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun readWorkExcel() {
+        // jxl 只支持 win 03版本excel,其他版本的会报错，需要将excel
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val workbook = Workbook.getWorkbook(assets.open("work1.xls"))
+                val sheet = workbook.getSheet(0)
+                val sheetRows:Int = sheet.rows -1;
+                val jsonArray = JSONArray();
+                for (i in 0..sheetRows){
+                    val obj = JSONObject()
+                    obj.put("addr",sheet.getCell(0,i).contents)
+                    jsonArray.put(obj)
+                }
+                Log.d("result -->", jsonArray.toString())
+                workbook.close()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
